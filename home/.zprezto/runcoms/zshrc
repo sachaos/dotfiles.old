@@ -1,0 +1,150 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# zsh completion
+[ -d $HOME/.zsh/zsh-completions/src ] && fpath=($HOME/.zsh/zsh-completions/src $fpath)
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+export TERM=xterm-256color
+
+# settings alias
+alias emacsq='/usr/bin/emacs -q'
+# alias emacs='env TERM=xterm-256color emacsclient -nw -a ""'
+alias e='emacsclient -nw -a ""'
+alias emacs='emacsclient -nw -a ""'
+alias ekill='emacsclient -e "(kill-emacs)"'
+alias git='hub'
+
+# nocaps
+setxkbmap -option ctrl:nocaps
+
+# path
+export PATH=$PATH:/home/sachaos/local
+eval "$(rbenv init - zsh)"
+
+# disable touchpad
+xinput set-prop 10 "Device Enabled" 0
+
+#########################################################
+## homesick
+#########################################################
+
+source ~/.homesick/repos/homeshick/homeshick.sh
+
+##########################################################
+## peco functions
+##########################################################
+
+# peco history
+function peco-select-history() {
+    typeset tac
+    if which tac > /dev/null; then
+        tac=tac
+    else
+        tac='tail -r'
+    fi
+    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle redisplay
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+# peco find
+function peco-find() {
+    local current_buffer=$BUFFER
+    # .git系など不可視フォルダは除外
+    local selected_file="$(find . -maxdepth 5 ! -path "*/.*" | grep -v '~$' | peco | sed -e "s/\ /\\\ /g" -e "s/#/\\\#/g" | tr '\n' ' ')"
+    if [ -n "$selected_file" ]; then
+        BUFFER="${current_buffer} ${selected_file}"
+        CURSOR=$#BUFFER
+    fi
+    zle clear-screen
+}
+zle -N peco-find
+bindkey '^x^f' peco-find
+
+# peco directory select
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000 # cdrの履歴を保存する個数
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+
+function peco-cdr () {
+    local selected_dir=$(cdr -l | awk '{print $2}' | peco)
+    if [ -n "$selected_dir" ]; then
+        local new_left="${LBUFFER} ${selected_dir} "
+        BUFFER=${new_left}${RBUFFER}
+        CURSOR=${#new_left}
+    fi
+}
+zle -N peco-cdr
+bindkey '^xi' peco-cdr
+
+# peco kill
+function peco-kill-process() {
+  ps -ef | peco | awk '{print $2}' | xargs kill
+  zle clear-screen
+}
+zle -N peco-kill-process
+bindkey '^xk' peco-kill-process
+
+# peco で github の branchを選択
+function peco-branch () {
+    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
+    if [ -n "$branch" ]; then
+      if [ -n "$LBUFFER" ]; then
+        local new_left="${LBUFFER%\ } $branch"
+      else
+        local new_left="$branch"
+      fi
+      BUFFER=${new_left}${RBUFFER}
+      CURSOR=${#new_left}
+    fi
+}
+zle -N peco-branch
+bindkey '^xb' peco-branch
+
+#################################################
+## various functions
+#################################################
+
+mkcd () {
+     mkdir -p $1 && cd $1
+}
+
+# enterでいろいろ表示させるようにする
+
+function do_enter () {
+    if [ -n "$BUFFER" ]; then
+        zle accept-line
+        return 0
+    fi
+    echo
+    pwd
+    echo -e "\e[0;33m--- files ---\e[0m"
+    ls
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+        echo
+        echo -e "\e[0;33m--- git status ---\e[0m"
+        git status -sb
+    fi
+    echo
+    zle reset-prompt
+    return 0
+}
+zle -N do_enter
+bindkey '^m' do_enter
+

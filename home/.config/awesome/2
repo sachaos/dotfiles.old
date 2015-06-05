@@ -1,0 +1,186 @@
+./#rc.lua#:    naughty.notify({ preset = naughty.config.presets.critical,
+./#rc.lua#:        naughty.notify({ preset = naughty.config.presets.critical,
+./#rc.lua#:        mpd_notification_preset = {
+./rc.lua~:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua~:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua~:        mpd_notification_preset = {
+./rc.lua.blackburn:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.blackburn:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.copland:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.copland:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua:        mpd_notification_preset = {
+./rc.lua.rainbow:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.rainbow:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.rainbow:        mail_notification_preset.fg = white
+./rc.lua.rainbow:        mpd_notification_preset.fg = white
+./rc.lua.rainbow:        fs_notification_preset.fg = white
+./rc.lua.rainbow:        yawn_notification_preset.fg = white
+./rc.lua.rainbow:            volume.notify()
+./rc.lua.rainbow:            volume.notify()
+./rc.lua.rainbow:            volume.notify()
+./rc.lua.rainbow:            volume.notify()
+./rc.lua.powerarrow-darker:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.powerarrow-darker:        naughty.notify({ preset = naughty.config.presets.critical,
+./README.rst:- Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
+./README.rst:- Net carrier status notifier
+./rc.lua.holo:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.holo:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.holo:        mail_notification_preset.fg = "#FFFFFF"
+./rc.lua.holo:    notifications = {
+./rc.lua.holo:            myvolumebar.notify()
+./rc.lua.holo:            myvolumebar.notify()
+./rc.lua.holo:            myvolumebar.notify()
+./rc.lua.holo:            myvolumebar.notify()
+./themes/powerarrow-darker/theme.lua:theme.notify_fg                     = theme.fg_normal
+./themes/powerarrow-darker/theme.lua:theme.notify_bg                     = theme.bg_normal
+./themes/powerarrow-darker/theme.lua:theme.notify_border                 = theme.border_focus
+./themes/holo/theme.lua:theme.widget_mail_notify            = theme.icon_dir .. "/mail_notify.png"
+./lain/widgets/yawn/init.lua:local notification        = nil
+./lain/widgets/yawn/init.lua:yawn_notification_preset  = {}
+./lain/widgets/yawn/init.lua:    if notification ~= nil then
+./lain/widgets/yawn/init.lua:        naughty.destroy(notification)
+./lain/widgets/yawn/init.lua:        notification = nil
+./lain/widgets/yawn/init.lua:    notification = naughty.notify({
+./lain/widgets/yawn/init.lua:        preset = yawn_notification_preset,
+./lain/widgets/bat.lua:    local notify = args.notify or "on"
+./lain/widgets/bat.lua:    bat_notification_low_preset = {
+./lain/widgets/bat.lua:    bat_notification_critical_preset = {
+./lain/widgets/bat.lua:        -- notifications for low and critical states
+./lain/widgets/bat.lua:        if bat_now.status == "Discharging" and notify == "on" and bat_now.perc ~= nil
+./lain/widgets/bat.lua:                bat.id = naughty.notify({
+./lain/widgets/bat.lua:                    preset = bat_notification_critical_preset,
+./lain/widgets/bat.lua:                bat.id = naughty.notify({
+./lain/widgets/bat.lua:                    preset = bat_notification_low_preset,
+./lain/widgets/contrib/task.lua:-- Taskwarrior notification
+./lain/widgets/contrib/task.lua:local task_notification = nil
+./lain/widgets/contrib/task.lua:    if task_notification ~= nil then
+./lain/widgets/contrib/task.lua:        naughty.destroy(task_notification)
+./lain/widgets/contrib/task.lua:        task_notification = nil
+./lain/widgets/contrib/task.lua:    task_notification = naughty.notify({ title = "[task next]",
+./lain/widgets/contrib/task.lua:                                         icon = task.notify_icon,
+./lain/widgets/contrib/task.lua:          naughty.notify({
+./lain/widgets/contrib/task.lua:              icon     = task.notify_icon,
+./lain/widgets/contrib/task.lua:          naughty.notify({
+./lain/widgets/contrib/task.lua:              icon     = task.notify_icon,
+./lain/widgets/contrib/task.lua:    task.notify_icon = icons_dir .. "/taskwarrior/task.png"
+./lain/widgets/contrib/task.lua:    task.notify_icon_small = icons_dir .. "/taskwarrior/tasksmall.png"
+./lain/widgets/contrib/moc.lua:    moc_notification_preset = {
+./lain/widgets/contrib/moc.lua:            moc_notification_preset.text = string.format("%s (%s) - %s\n%s", moc_now.artist,
+./lain/widgets/contrib/moc.lua:                    moc.id = naughty.notify({
+./lain/widgets/contrib/moc.lua:                        preset = moc_notification_preset,
+./lain/widgets/contrib/tpbat/init.lua:local tpbat_notification = nil
+./lain/widgets/contrib/tpbat/init.lua:    if tpbat_notification ~= nil
+./lain/widgets/contrib/tpbat/init.lua:        naughty.destroy(tpbat_notification)
+./lain/widgets/contrib/tpbat/init.lua:        tpbat_notification = nil
+./lain/widgets/contrib/tpbat/init.lua:    tpbat_notification = naughty.notify({
+./lain/widgets/contrib/tpbat/init.lua:    bat_notification_low_preset = {
+./lain/widgets/contrib/tpbat/init.lua:    bat_notification_critical_preset = {
+./lain/widgets/contrib/tpbat/init.lua:        local n = naughty.notify({
+./lain/widgets/contrib/tpbat/init.lua:            preset = bat_notification_low_preset,
+./lain/widgets/contrib/tpbat/init.lua:            -- notifications for low and critical states (when discharging)
+./lain/widgets/contrib/tpbat/init.lua:                    tpbat.id = naughty.notify({
+./lain/widgets/contrib/tpbat/init.lua:                        preset = bat_notification_critical_preset,
+./lain/widgets/contrib/tpbat/init.lua:                    tpbat.id = naughty.notify({
+./lain/widgets/contrib/tpbat/init.lua:                        preset = bat_notification_low_preset,
+./lain/widgets/fs.lua:local notification  = nil
+./lain/widgets/fs.lua:fs_notification_preset = { fg = beautiful.fg_normal }
+./lain/widgets/fs.lua:    if notification ~= nil then
+./lain/widgets/fs.lua:        naughty.destroy(notification)
+./lain/widgets/fs.lua:        notification = nil
+./lain/widgets/fs.lua:    notification = naughty.notify({
+./lain/widgets/fs.lua:        preset = fs_notification_preset,
+./lain/widgets/fs.lua:            naughty.notify({
+./lain/widgets/alsabar.lua:    notifications = {
+./lain/widgets/alsabar.lua:function alsabar.notify()
+./lain/widgets/alsabar.lua:        screen  = alsabar.notifications.screen,
+./lain/widgets/alsabar.lua:        font    = alsabar.notifications.font .. " " ..
+./lain/widgets/alsabar.lua:                  alsabar.notifications.font_size,
+./lain/widgets/alsabar.lua:        fg      = alsabar.notifications.color
+./lain/widgets/alsabar.lua:    int = math.modf((alsabar._current_level / 100) * alsabar.notifications.bar_size)
+./lain/widgets/alsabar.lua:                .. string.rep(" ", alsabar.notifications.bar_size - int)
+./lain/widgets/alsabar.lua:    if alsabar._notify ~= nil then
+./lain/widgets/alsabar.lua:        alsabar._notify = naughty.notify ({
+./lain/widgets/alsabar.lua:            replaces_id = alsabar._notify.id,
+./lain/widgets/alsabar.lua:        alsabar._notify = naughty.notify ({
+./lain/widgets/alsabar.lua:    alsabar.notifications = args.notifications or alsabar.notifications
+./lain/widgets/calendar.lua:-- Calendar notification
+./lain/widgets/calendar.lua:local cal_notification = nil
+./lain/widgets/calendar.lua:    if cal_notification ~= nil then
+./lain/widgets/calendar.lua:        naughty.destroy(cal_notification)
+./lain/widgets/calendar.lua:        cal_notification = nil
+./lain/widgets/calendar.lua:        calendar.notify_icon = calendar.icons .. today .. ".png"
+./lain/widgets/calendar.lua:       calendar.notify_icon = nil
+./lain/widgets/calendar.lua:    cal_notification = naughty.notify({
+./lain/widgets/calendar.lua:        icon = calendar.notify_icon,
+./lain/widgets/calendar.lua:    calendar.notify_icon = nil
+./lain/widgets/mpd.lua:    mpd_notification_preset = {
+./lain/widgets/mpd.lua:            mpd_notification_preset.text = string.format("%s (%s) - %s\n%s", mpd_now.artist,
+./lain/widgets/mpd.lua:                    mpd.id = naughty.notify({
+./lain/widgets/mpd.lua:                        preset = mpd_notification_preset,
+./lain/widgets/net.lua:local notify_fg    = require("beautiful").fg_focus
+./lain/widgets/net.lua:    local notify = args.notify or "on"
+./lain/widgets/net.lua:        if net_now.carrier ~= "1" and notify == "on"
+./lain/widgets/net.lua:                naughty.notify({
+./lain/widgets/net.lua:                    fg       = notify_fg or "#FFFFFF",
+./lain/widgets/imap.lua:        mail_notification_preset = {
+./lain/widgets/imap.lua:                naughty.notify({
+./lain/widgets/imap.lua:                    preset = mail_notification_preset,
+./lain/wiki/imap.md:New mails are notified like this:
+./lain/wiki/imap.md:`settings` can use the value `mailcount`, an integer greater or equal to zero, and can modify `mail_notification_preset` table, which will be the preset for the naughty notifications. Check [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify) for the list of variables it can contain. 
+./lain/wiki/imap.md:    mail_notification _preset = {
+./lain/wiki/task.md:Attaches a [taskwarrior](http://taskwarrior.org) notification to a widget, and lets to add/search tasks from the promptbox.
+./lain/wiki/task.md:`position` possible values are defined [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify).
+./lain/wiki/task.md:You can call the notification with a key binding like this:
+./lain/wiki/Home.md:imagemagick | album arts in [mpd](https://github.com/copycat-killer/lain/wiki/mpd) notifications | Cairo doesn't do high quality filtering.
+./lain/wiki/alsabar.md:Shows and controls alsa volume with a progressbar; provides tooltips, notifications, and color changes at mute/unmute switch.
+./lain/wiki/alsabar.md:`notifications` | Notifications settings | table | see **notifications**
+./lain/wiki/alsabar.md:### notifications
+./lain/wiki/alsabar.md:It's **crucial** to set `notifications.bar_size` to your `mywibox[s]` height.
+./lain/wiki/alsabar.md:`notify` | The notification | function
+./lain/wiki/alsabar.md:            volume.notify()
+./lain/wiki/alsabar.md:            volume.notify()
+./lain/wiki/alsabar.md:            volume.notify()
+./lain/wiki/alsabar.md:            volume.notify()
+./lain/wiki/mpd.md:Now playing songs are notified like this:
+./lain/wiki/mpd.md:`cover_size` | Album art notification size | int | 100
+./lain/wiki/mpd.md:and can modify `mpd_notification_preset` table, which will be the preset for the naughty notifications. Check [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify) for the list of variables it can contain. Default definition:
+./lain/wiki/mpd.md:    mpd_notification_preset = {
+./lain/wiki/mpd.md:`update` | The notification | function
+./lain/wiki/calendar.md:Attaches a calendar notification to a widget.
+./lain/wiki/calendar.md:`position` possible values are defined [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify).
+./lain/wiki/calendar.md:You can call the notification with a key binding like this:
+./lain/wiki/calendar.md:**Note that** naughty notification requires `font` to be monospaced, in order to correctly display the output.
+./lain/wiki/bat.md:Displays a notification when battery is low or critical.
+./lain/wiki/bat.md:`notify` | Enable notifications | string | "on"
+./lain/wiki/bat.md:To disable warning notifications, set `notify` to `"off"`.
+./lain/wiki/bat.md:and can modify the following two tables, which will be the preset for the naughty notifications: 
+./lain/wiki/bat.md:* `bat_notification_low_preset`(used if battery charge level <= 15)
+./lain/wiki/bat.md:* `bat_notification_critical_preset` (used if battery charge level <= 5)
+./lain/wiki/bat.md:Check [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify) for the list of variables they can contain.  
+./lain/wiki/bat.md:bat_notification_low_preset = {
+./lain/wiki/bat.md:bat_notification_critical_preset = {
+./lain/wiki/yawn.md:Yawn provides brief and compact Yahoo! Weather notification.
+./lain/wiki/yawn.md:    `settings` can use strings `forecast`, `units`, and can modify `yawn_notification_preset` table, which
+./lain/wiki/yawn.md:     will be the preset for the naughty notifications. Check [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify) for the list of variables it can contain.
+./lain/wiki/yawn.md:Hovering over ``yawn.icon`` will display the notification.
+./lain/wiki/yawn.md:Hovering over ``widget`` will display the notification.
+./lain/wiki/Widgets.md:For some widgets, `function` returns a `wibox.widget.textbox`, for others a table to be used for notification and update purposes.
+./lain/wiki/tpbat.md:Includes hover notification with more details.
+./lain/wiki/fs.md:Displays a notification when the partition is full or has low space.
+./lain/wiki/fs.md:Also, `settings` can modify `fs_notification_preset` table. This table will be the preset for the naughty notifications. Check [here](http://awesome.naquadah.org/doc/api/modules/naughty.html#notify) for the list of variables it can contain. Default definition:
+./lain/wiki/fs.md:    fs_notification_preset = { fg = beautiful.fg_normal }
+./lain/wiki/fs.md:`show` | The notification | function
+./lain/wiki/fs.md:You can display the notification with a key binding like this:
+./lain/wiki/fs.md:**Note that** naughty notification requires `beautiful.font` or `fs_notification_preset.font` to be monospaced, in order to correctly display the output.
+./rc.lua.dremora:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.dremora:        naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.dremora:        mail_notification_preset.fg = white
+./rc.lua.dremora:        mpd_notification_preset.fg = white
+./rc.lua.dremora:        fs_notification_preset.fg = white
+./rc.lua.dremora:        yawn_notification_preset.fg = white
+./rc.lua.steamburn:    naughty.notify({ preset = naughty.config.presets.critical,
+./rc.lua.steamburn:        naughty.notify({ preset = naughty.config.presets.critical,
+バイナリファイル ./.git/modules/lain/modules/wiki/objects/pack/pack-78dee856093d9cdfd15703efdaf4d75e6af231da.pack に一致しました
+バイナリファイル ./.git/index に一致しました

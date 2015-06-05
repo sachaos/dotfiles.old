@@ -1,0 +1,10 @@
+##
+# select command history
+#
+local res tailr
+tailr="tail -r"
+if which "tac" > /dev/null 2>&1; then
+  tailr="tac"
+fi
+res=$(fc -l -n 1 | eval $tailr | peco)
+_cool-peco-on-complete $res
