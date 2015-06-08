@@ -1,1 +1,1 @@
-/home/sachaos/.zprezto/runcoms/zshrc
+.zprezto/runcoms/zshrc

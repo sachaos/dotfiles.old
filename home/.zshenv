@@ -1,1 +1,1 @@
-/home/sachaos/.zprezto/runcoms/zshenv
+.zprezto/runcoms/zshenv
