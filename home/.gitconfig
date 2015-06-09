@@ -3,7 +3,7 @@
 	name = sachaos
 
 [core]
-    editor = "emacsclient -nw -a ''"
+    editor = "TERM=xterm-16color emacsclient -nw -a ''"
 	excludesfile = ~/.gitignore_global
 
 [alias]

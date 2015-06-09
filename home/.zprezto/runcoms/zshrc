@@ -19,21 +19,14 @@ export TERM=xterm-256color
 
 # settings alias
 alias emacsq='/usr/bin/emacs -q'
-# alias emacs='env TERM=xterm-256color emacsclient -nw -a ""'
-alias e='emacsclient -nw -a ""'
-alias emacs='emacsclient -nw -a ""'
+alias e='TERM=xterm-16color emacsclient -nw -a ""'
+alias emacs='TERM=xterm-16color emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias git='hub'
-
-# nocaps
-setxkbmap -option ctrl:nocaps
 
 # path
 export PATH=$PATH:/home/sachaos/local
 eval "$(rbenv init - zsh)"
-
-# disable touchpad
-xinput set-prop 10 "Device Enabled" 0
 
 #########################################################
 ## homesick

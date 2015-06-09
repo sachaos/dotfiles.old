@@ -10,15 +10,5 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export PATH=$PATH:$HOME/.rbenv/versiond/2.2.0/lib/ruby/gems/2.2.0/rcodetools-0.8.5.0/bin
-
-# for golang
-export GOPATH=$HOME/gocode
-export PATH=$PATH:$GOPATH/bin
-
-# for python
-export WORKON_HOME=~/.virtualenvs
-. /usr/local/bin/virtualenvwrapper.sh
-
-# for my scripts
-export PATH=$PATH:$HOME/scripts
+## 個別のPCの環境設定は.zshrc_localに書く
+[ -f ${ZDOTDIR:-$HOME}/.zshrc_local ] && . ${ZDOTDIR:-$HOME}/.zshrc_local
