@@ -57,7 +57,7 @@ bindkey '^r' peco-select-history
 function peco-find() {
     local current_buffer=$BUFFER
     # .git系など不可視フォルダは除外
-    local selected_file="$(find . -maxdepth 5 ! -path "*/.*" | grep -v '~$' | peco | sed -e "s/\ /\\\ /g" -e "s/#/\\\#/g" | tr '\n' ' ')"
+    local selected_file="$(find . -maxdepth 5 ! -path "*/.*" | grep -v '~$' | peco | sed -e "s/)/\\\)/g" -e "s/(/\\\(/g" -e "s/\ /\\\ /g" -e "s/#/\\\#/g" | tr '\n' ' ')"
     if [ -n "$selected_file" ]; then
         BUFFER="${current_buffer} ${selected_file}"
         CURSOR=$#BUFFER
@@ -96,19 +96,35 @@ bindkey '^xk' peco-kill-process
 
 # peco で github の branchを選択
 function peco-branch () {
-    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
-    if [ -n "$branch" ]; then
-      if [ -n "$LBUFFER" ]; then
-        local new_left="${LBUFFER%\ } $branch"
-      else
-        local new_left="$branch"
-      fi
-      BUFFER=${new_left}${RBUFFER}
-      CURSOR=${#new_left}
+  local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
+  if [ -n "$branch" ]; then
+    if [ -n "$LBUFFER" ]; then
+      local new_left="${LBUFFER%\ } $branch"
+    else
+      local new_left="$branch"
     fi
+    BUFFER=${new_left}${RBUFFER}
+    CURSOR=${#new_left}
+  fi
 }
 zle -N peco-branch
 bindkey '^xb' peco-branch
+
+# pecoでgemのファイルを選択
+function peco-gem () {
+  local file_path=$(gem which $(gem list -q | peco) 2>/dev/null)
+  echo $file_path
+  if [ -n "$file_path" ]; then
+    if [ -n "$LBUFFER" ]; then
+      local new_left="${LBUFFER%\ } $file_path"
+    else
+      local new_left="$file_path"
+    fi
+    BUFFER=${new_left}${RBUFFER}
+    CURSOR=${#new_left}
+  fi
+}
+zle -N peco-gem
 
 #################################################
 ## various functions
