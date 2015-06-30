@@ -7,10 +7,12 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-    st = status
-    co = checkout
-    a = add
-    cm = commit
+    st  = status
+    co  = checkout
+    a   = add
+    cm  = commit
+    cma = commit --amend
+    d   = diff
 
 [ghq]
     root = ~/.go/src

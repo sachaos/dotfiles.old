@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-TERM=xterm-256color tmux
+TERM=tmux
 # tmux
 
 # If not running interactively, don't do anything
