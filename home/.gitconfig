@@ -3,13 +3,14 @@
 	name = sachaos
 
 [core]
-    editor = "TERM=xterm-16color emacsclient -nw -a ''"
+    editor = "emacsclient -nw -a ''"
 	excludesfile = ~/.gitignore_global
 
 [alias]
     st  = status
     co  = checkout
     a   = add
+    rmc = rm --cached
     cm  = commit
     cma = commit --amend
     d   = diff
