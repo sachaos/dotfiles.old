@@ -7,8 +7,10 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
+    log = log --oneline --decorate --graph
     st  = status
     co  = checkout
+    cp  = cherry-pick
     a   = add
     rmc = rm --cached
     cm  = commit
