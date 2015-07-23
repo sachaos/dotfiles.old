@@ -9,9 +9,12 @@
 //}}%PRESERVE%
 // ========================================================================= //
 
+//Caret Hintキーバインド変更
+plugins.options["caret_hint.head_key"] = "m";//c → m
+plugins.options["caret_hint.tail_key"] = "M";//C → M
+
+
 // ========================= Special key settings ========================== //
-
-
 
 key.quitKey              = "C-q";
 key.helpKey              = "<f1>";
@@ -530,3 +533,7 @@ hook.addToHook('KeyBoardQuit', function (aEvent) {
         key.generateKey(aEvent.originalTarget, KeyEvent.DOM_VK_ESCAPE, true);
     }
 });
+
+key.setCaretKey(';', function (aEvent, aArg) {
+    ext.exec('hok-start-extended-mode', aArg);
+}, 'HoK - 拡張ヒントモードを開始', true);
