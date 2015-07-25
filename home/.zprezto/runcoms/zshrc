@@ -19,21 +19,16 @@ export TERM=xterm-256color
 
 # settings alias
 alias emacsq='/usr/bin/emacs -q'
-# alias emacs='env TERM=xterm-256color emacsclient -nw -a ""'
 alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias git='hub'
 
-# nocaps
-setxkbmap -option ctrl:nocaps
+# Editor
+export EDITOR='emacsclient -nw -a ""'
 
 # path
-export PATH=$PATH:/home/sachaos/local
 eval "$(rbenv init - zsh)"
-
-# disable touchpad
-xinput set-prop 10 "Device Enabled" 0
 
 #########################################################
 ## homesick
@@ -64,7 +59,7 @@ bindkey '^r' peco-select-history
 function peco-find() {
     local current_buffer=$BUFFER
     # .git系など不可視フォルダは除外
-    local selected_file="$(find . -maxdepth 5 ! -path "*/.*" | grep -v '~$' | peco | sed -e "s/\ /\\\ /g" -e "s/#/\\\#/g" | tr '\n' ' ')"
+    local selected_file="$(find . -maxdepth 5 ! -path "*/.*" | grep -v '~$' | peco | sed -e "s/)/\\\)/g" -e "s/(/\\\(/g" -e "s/\ /\\\ /g" -e "s/#/\\\#/g" | tr '\n' ' ')"
     if [ -n "$selected_file" ]; then
         BUFFER="${current_buffer} ${selected_file}"
         CURSOR=$#BUFFER
@@ -103,19 +98,50 @@ bindkey '^xk' peco-kill-process
 
 # peco で github の branchを選択
 function peco-branch () {
-    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
-    if [ -n "$branch" ]; then
-      if [ -n "$LBUFFER" ]; then
-        local new_left="${LBUFFER%\ } $branch"
-      else
-        local new_left="$branch"
-      fi
-      BUFFER=${new_left}${RBUFFER}
-      CURSOR=${#new_left}
+  local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
+  if [ -n "$branch" ]; then
+    if [ -n "$LBUFFER" ]; then
+      local new_left="${LBUFFER%\ } $branch"
+    else
+      local new_left="$branch"
     fi
+    BUFFER=${new_left}${RBUFFER}
+    CURSOR=${#new_left}
+  fi
 }
 zle -N peco-branch
-bindkey '^xb' peco-branch
+bindkey '^g^b' peco-branch
+
+# pecoでgit add
+function peco-select-gitadd() {
+    local SELECTED_FILE_TO_ADD="$(git status --porcelain | \
+                                  peco --query "$LBUFFER" | \
+                                  awk -F ' ' '{print $NF}')"
+    if [ -n "$SELECTED_FILE_TO_ADD" ]; then
+        BUFFER="git add $(echo "$SELECTED_FILE_TO_ADD" | tr '\n' ' ')"
+        CURSOR=$#BUFFER
+    fi
+    zle accept-line
+    # zle clear-screen
+}
+zle -N peco-select-gitadd
+bindkey "^g^a" peco-select-gitadd
+
+# pecoでgemのファイルを選択
+function peco-gem () {
+  local file_path=$(gem which $(gem list -q | peco) 2>/dev/null)
+  echo $file_path
+  if [ -n "$file_path" ]; then
+    if [ -n "$LBUFFER" ]; then
+      local new_left="${LBUFFER%\ } $file_path"
+    else
+      local new_left="$file_path"
+    fi
+    BUFFER=${new_left}${RBUFFER}
+    CURSOR=${#new_left}
+  fi
+}
+zle -N peco-gem
 
 #################################################
 ## various functions

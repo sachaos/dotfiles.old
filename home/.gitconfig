@@ -7,10 +7,15 @@
 	excludesfile = ~/.gitignore_global
 
 [alias]
-    st = status
-    co = checkout
-    a = add
-    cm = commit
+    log = log --oneline --decorate --graph
+    st  = status
+    co  = checkout
+    cp  = cherry-pick
+    a   = add
+    rmc = rm --cached
+    cm  = commit
+    cma = commit --amend
+    d   = diff
 
 [ghq]
     root = ~/.go/src

@@ -8,3 +8,7 @@ npm-debug.log
 *.db
 .envrc
 \#*
+.DS_Store
+.envrc
+/vendor/
+.bundle/
