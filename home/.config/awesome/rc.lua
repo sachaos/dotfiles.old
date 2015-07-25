@@ -468,12 +468,12 @@ globalkeys = awful.util.table.join(
     --     end),
 
     -- macを同じにする
-    awful.key({ modkey }, "k",
+    awful.key({ modkey }, "j",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "j",
+    awful.key({ modkey }, "k",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
