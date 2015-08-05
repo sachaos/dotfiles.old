@@ -148,7 +148,15 @@ zle -N peco-gem
 #################################################
 
 mkcd () {
-     mkdir -p $1 && cd $1
+    mkdir -p $1 && cd $1
+}
+
+todo () {
+    find . -path "./.git" -prune -o -path "./tmp" -prune -o -path "./log" -prune -o -type f -name "*" | xargs grep --color=auto -n "TODO" 2>/dev/null
+}
+
+add-todoist () {
+    xargs -I{} sh -c "todoist -a '{}'"
 }
 
 # enterでいろいろ表示させるようにする
