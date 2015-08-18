@@ -8,6 +8,9 @@
 
 [alias]
     log = log --oneline --decorate --graph
+    pr  = pull-request
+    pl  = pull
+    ps  = push
     st  = status
     co  = checkout
     cp  = cherry-pick
@@ -16,6 +19,7 @@
     cm  = commit
     cma = commit --amend
     d   = diff
+    dh  = diff HEAD
 
 [ghq]
     root = ~/.go/src
