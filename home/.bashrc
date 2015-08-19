@@ -3,4 +3,4 @@
 # for examples
 
 # tmuxの起動をする
-TERM=xterm-256color tmux
+TERM=xterm-256color tmux new-session
