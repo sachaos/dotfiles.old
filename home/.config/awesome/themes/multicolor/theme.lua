@@ -9,8 +9,8 @@
 theme                               = {}
 
 theme.confdir                       = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
--- theme.wallpaper                     = theme.confdir .. "/wall.png"
-theme.wallpaper                     = "/home/sachaos/Pictures/Southpark/kenny-south-park-dead-kyle_417682.jpg"
+theme.wallpaper                     = theme.confdir .. "/wall.png"
+-- theme.wallpaper                     = "/home/sachaos/Pictures/Southpark/kenny-south-park-dead-kyle_417682.jpg"
 -- theme.wallpaper                     = "/home/sachaos/Pictures/Southpark/1498737.jpg"
 -- theme.wallpaper                     = "/home/sachaos/Pictures/Southpark/1374439.jpg"
 
