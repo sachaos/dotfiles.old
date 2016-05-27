@@ -23,6 +23,7 @@ alias e='emacsclient -nw -a ""'
 alias emacs='emacsclient -nw -a ""'
 alias ekill='emacsclient -e "(kill-emacs)"'
 alias git='hub'
+alias be='bundle exec'
 
 # Editor
 export EDITOR='emacsclient -nw -a ""'
@@ -39,6 +40,10 @@ source ~/.homesick/repos/homeshick/homeshick.sh
 ##########################################################
 ## peco functions
 ##########################################################
+
+function today() {
+    echo $(date "+%Y%m%d")
+}
 
 # peco history
 function peco-select-history() {
